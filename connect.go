@@ -202,7 +202,7 @@ func (c *Client) doEnvelope(method, uri string, params url.Values, headers http.
 	headers.Add("User-Agent", name+"/"+version)
 
 	if c.apiKey != "" && c.accessToken != "" {
-		authHeader := fmt.Sprint(c.accessToken) //fmt.Sprintf("token %s:%s", c.apiKey, c.accessToken)
+		authHeader := fmt.Sprintf("enctoken %s", c.accessToken) //fmt.Sprintf("token %s:%s", c.apiKey, c.accessToken)
 		headers.Add("Authorization", authHeader)
 	}
 
@@ -222,7 +222,7 @@ func (c *Client) do(method, uri string, params url.Values, headers http.Header) 
 	headers.Add("User-Agent", name+"/"+version)
 
 	if c.apiKey != "" && c.accessToken != "" {
-		authHeader := fmt.Sprintf("token %s:%s", c.apiKey, c.accessToken)
+		authHeader := fmt.Sprintf("enctoken %s", c.accessToken) //fmt.Sprintf("token %s:%s", c.apiKey, c.accessToken)
 		headers.Add("Authorization", authHeader)
 	}
 
