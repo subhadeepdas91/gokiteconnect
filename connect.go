@@ -139,10 +139,11 @@ const (
 )
 
 // New creates a new Kite Connect client.
-func New(apiKey string) *Client {
+func New(accessToken string) *Client {
 	client := &Client{
-		apiKey:  apiKey,
-		baseURI: baseURI,
+		apiKey:      "kitefront",
+		accessToken: accessToken,
+		baseURI:     baseURI,
 	}
 
 	// Create a default http handler with default timeout.
@@ -201,7 +202,7 @@ func (c *Client) doEnvelope(method, uri string, params url.Values, headers http.
 	headers.Add("User-Agent", name+"/"+version)
 
 	if c.apiKey != "" && c.accessToken != "" {
-		authHeader := fmt.Sprintf("token %s:%s", c.apiKey, c.accessToken)
+		authHeader := fmt.Sprint(c.accessToken) //fmt.Sprintf("token %s:%s", c.apiKey, c.accessToken)
 		headers.Add("Authorization", authHeader)
 	}
 
@@ -234,10 +235,12 @@ func (c *Client) doRaw(method, uri string, reqBody []byte, headers http.Header) 
 	}
 
 	headers.Add("X-Kite-Version", kiteHeaderVersion)
-	headers.Add("User-Agent", name+"/"+version)
+	// headers.Add("User-Agent", name+"/"+version)
+	headers.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36")
 
 	if c.apiKey != "" && c.accessToken != "" {
-		authHeader := fmt.Sprintf("token %s:%s", c.apiKey, c.accessToken)
+		// authHeader := fmt.Sprintf("token %s:%s", c.apiKey, c.accessToken)
+		authHeader := fmt.Sprintf("enctoken %s", c.accessToken)
 		headers.Add("Authorization", authHeader)
 	}
 

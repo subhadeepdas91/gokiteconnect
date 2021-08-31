@@ -17,7 +17,7 @@ Zerodha Technology (c) 2021. Licensed under the MIT License.
 ## Installation
 
 ```
-go get github.com/zerodha/gokiteconnect/v4
+go get github.com/subhadeepdas91/gokiteconnect/v4
 ```
 
 ## API usage
@@ -28,7 +28,7 @@ package main
 import (
 	"fmt"
 
-	kiteconnect "github.com/zerodha/gokiteconnect/v4"
+	kiteconnect "github.com/subhadeepdas91/gokiteconnect/v4"
 )
 
 const (
