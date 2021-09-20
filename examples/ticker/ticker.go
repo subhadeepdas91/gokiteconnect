@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	kiteconnect "github.com/zerodha/gokiteconnect/v4"
-	kitemodels "github.com/zerodha/gokiteconnect/v4/models"
-	kiteticker "github.com/zerodha/gokiteconnect/v4/ticker"
+	kiteconnect "github.com/subhadeepdas91/gokiteconnect/v4"
+	kitemodels "github.com/subhadeepdas91/gokiteconnect/v4/models"
+	kiteticker "github.com/subhadeepdas91/gokiteconnect/v4/ticker"
 )
 
 const (
@@ -75,9 +75,11 @@ func main() {
 		fmt.Printf("Error: %v", err)
 		return
 	}
+	fmt.Println(data)
 
 	// Create new Kite ticker instance
-	ticker = kiteticker.New(apiKey, data.AccessToken)
+	//ticker = kiteticker.New(apiKey, data.AccessToken)
+	ticker = kiteticker.New("")
 
 	// Assign callbacks
 	ticker.OnError(onError)

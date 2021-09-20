@@ -6,7 +6,7 @@ import (
 	"net/url"
 
 	"github.com/google/go-querystring/query"
-	"github.com/zerodha/gokiteconnect/v4/models"
+	"github.com/subhadeepdas91/gokiteconnect/v4/models"
 )
 
 // MFHolding represents a individual mutualfund holding.

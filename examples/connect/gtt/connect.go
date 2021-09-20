@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	kiteconnect "github.com/zerodha/gokiteconnect/v4"
+	kiteconnect "github.com/subhadeepdas91/gokiteconnect/v4"
 )
 
 const (

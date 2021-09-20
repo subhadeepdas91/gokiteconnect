@@ -12,8 +12,8 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	kiteconnect "github.com/zerodha/gokiteconnect/v4"
-	"github.com/zerodha/gokiteconnect/v4/models"
+	kiteconnect "github.com/subhadeepdas91/gokiteconnect/v4"
+	"github.com/subhadeepdas91/gokiteconnect/v4/models"
 )
 
 // Mode represents available ticker modes.
@@ -25,6 +25,8 @@ type Ticker struct {
 
 	apiKey      string
 	accessToken string
+
+	rawWsUrl string
 
 	url                 url.URL
 	callbacks           callbacks
@@ -138,11 +140,13 @@ var (
 )
 
 // New creates a new ticker instance.
-func New(apiKey string, accessToken string) *Ticker {
+func New(rawWsUrl string) *Ticker {
+	// url, _ = url.Parse(rawWsUrl) //url.URL{Scheme: "wss", RawPath: rawWsUrl}
+	u, _ := url.Parse(rawWsUrl)
 	ticker := &Ticker{
-		apiKey:              apiKey,
-		accessToken:         accessToken,
-		url:                 tickerURL,
+		apiKey:              "kitefront",
+		accessToken:         "",
+		url:                 *u,
 		autoReconnect:       true,
 		reconnectMaxDelay:   defaultReconnectMaxDelay,
 		reconnectMaxRetries: defaultReconnectMaxAttempts,
@@ -270,10 +274,10 @@ func (t *Ticker) ServeWithContext(ctx context.Context) {
 			}
 
 			// Prepare ticker URL with required params.
-			q := t.url.Query()
-			q.Set("api_key", t.apiKey)
-			q.Set("access_token", t.accessToken)
-			t.url.RawQuery = q.Encode()
+			// q := t.url.Query()
+			// q.Set("api_key", t.apiKey)
+			// q.Set("access_token", t.accessToken)
+			// t.url.RawQuery = q.Encode()
 
 			// create a dialer
 			d := websocket.DefaultDialer
